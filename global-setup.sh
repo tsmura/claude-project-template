@@ -84,7 +84,17 @@ echo ""
 
 # Global skills
 echo "Global skills:"
-install_file "$GLOBAL_DIR/skills/git-summary/SKILL.md.example" "$CLAUDE_HOME/skills/git-summary/SKILL.md"
+install_file "$GLOBAL_DIR/skills/start/SKILL.md.example" "$CLAUDE_HOME/skills/start/SKILL.md"
+install_file "$GLOBAL_DIR/skills/ship/SKILL.md.example" "$CLAUDE_HOME/skills/ship/SKILL.md"
+install_file "$GLOBAL_DIR/skills/pr/SKILL.md.example" "$CLAUDE_HOME/skills/pr/SKILL.md"
+install_file "$GLOBAL_DIR/skills/test/SKILL.md.example" "$CLAUDE_HOME/skills/test/SKILL.md"
+install_file "$GLOBAL_DIR/skills/docs/SKILL.md.example" "$CLAUDE_HOME/skills/docs/SKILL.md"
+install_file "$GLOBAL_DIR/skills/deps/SKILL.md.example" "$CLAUDE_HOME/skills/deps/SKILL.md"
+install_file "$GLOBAL_DIR/skills/perf/SKILL.md.example" "$CLAUDE_HOME/skills/perf/SKILL.md"
+install_file "$GLOBAL_DIR/skills/playwright-cli/SKILL.md.example" "$CLAUDE_HOME/skills/playwright-cli/SKILL.md"
+for ref in request-mocking running-code session-management storage-state test-generation tracing video-recording; do
+  install_file "$GLOBAL_DIR/skills/playwright-cli/references/$ref.md.example" "$CLAUDE_HOME/skills/playwright-cli/references/$ref.md"
+done
 echo ""
 
 # Global agents
@@ -110,5 +120,3 @@ if $DRY_RUN; then
 else
   echo "Done: $INSTALLED installed, $SKIPPED skipped."
 fi
-echo ""
-echo "Learn more: docs/global-config.md"

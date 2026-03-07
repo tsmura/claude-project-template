@@ -1,6 +1,6 @@
 # PROJECT_NAME
 
-PROJECT_DESCRIPTION
+> PROJECT_DESCRIPTION
 
 ## Getting Started
 
@@ -41,15 +41,13 @@ Claude Code also supports user-level configuration that applies across all your 
 | File | Target | Purpose |
 |---|---|---|
 | `global/CLAUDE.md.example` | `~/.claude/CLAUDE.md` | Cross-project instructions |
-| `global/settings.json.example` | `~/.claude/settings.json` | Global permissions, env vars |
+| `global/settings.json.example` | `~/.claude/settings.json` | Global permissions |
 | `global/keybindings.json.example` | `~/.claude/keybindings.json` | Keyboard shortcuts |
 | `global/rules/coding-style.md.example` | `~/.claude/rules/coding-style.md` | Personal coding rules |
-| `global/skills/git-summary/SKILL.md.example` | `~/.claude/skills/git-summary/SKILL.md` | Personal skills |
+| `global/skills/*/SKILL.md.example` | `~/.claude/skills/*/SKILL.md` | Global skills (start, ship, pr, test, docs, deps, perf, playwright-cli) |
 | `global/claude.json.example` | `~/.claude.json` | User-scoped MCP servers |
 | `global/agents/researcher.md.example` | `~/.claude/agents/researcher.md` | Personal subagents |
 | `global/parent-claude.md.example` | `~/projects/CLAUDE.md` | Shared rules for sibling projects |
-
-See [docs/global-config.md](docs/global-config.md) for the full configuration hierarchy.
 
 ## Development
 

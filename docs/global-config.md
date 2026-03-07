@@ -79,7 +79,7 @@ Markdown files discovered recursively. Applied to all projects, before project r
 Reusable slash commands available in all projects. Each skill is a directory with `SKILL.md` as entrypoint.
 
 - **Invoke:** `/skill-name` or automatically when relevant
-- **Example:** `global/skills/git-summary/SKILL.md.example`
+- **Example:** `global/skills/start/SKILL.md.example` (and others: ship, pr, test, docs, deps, perf, playwright-cli)
 - **Project equivalent:** `.claude/skills/*/SKILL.md`
 - **Frontmatter options:** `name`, `description`, `allowed-tools`, `model`, `context`, `agent`, `disable-model-invocation`, `user-invocable`, `argument-hint`, `hooks`
 
