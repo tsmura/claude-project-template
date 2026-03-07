@@ -1,0 +1,32 @@
+---
+name: perf
+description: Check bundle size and run Lighthouse performance audit
+user-invocable: true
+allowed-tools:
+  - Bash(npm run build *)
+  - Bash(npm run *)
+  - Bash(pnpm run build *)
+  - Bash(pnpm run *)
+  - Bash(npx *)
+  - Bash(du *)
+  - Bash(ls *)
+  - Bash(cat *)
+  - Read
+  - Glob
+---
+
+Run a performance check on the project:
+
+1. Build the project (`npm run build` or equivalent from CLAUDE.md).
+2. Report bundle size:
+   - List files in the build output directory with sizes
+   - Highlight the largest files and total size
+   - Compare to previous build if stats are available
+3. If the project is a web app, run Lighthouse CI:
+   - `npx lighthouse-ci --collect.staticDistDir=<build-dir>` or equivalent
+   - Report key scores: Performance, Accessibility, Best Practices, SEO
+4. Flag any concerns:
+   - Bundle files over 250KB (gzipped)
+   - Lighthouse performance score under 90
+   - Large unminified assets
+5. Suggest specific improvements if issues are found.

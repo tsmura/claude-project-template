@@ -1,0 +1,34 @@
+---
+name: deps
+description: Check for outdated dependencies and update them
+user-invocable: true
+allowed-tools:
+  - Bash(npm outdated *)
+  - Bash(npm update *)
+  - Bash(npm install *)
+  - Bash(npm run *)
+  - Bash(npm test *)
+  - Bash(pnpm outdated *)
+  - Bash(pnpm update *)
+  - Bash(pnpm install *)
+  - Bash(pnpm run *)
+  - Bash(pnpm test *)
+  - Bash(uv run *)
+  - Bash(uv lock *)
+  - Bash(uv sync *)
+  - Bash(pip list --outdated *)
+  - Read
+  - Glob
+---
+
+Check for outdated dependencies and update safely:
+
+1. Detect the package manager(s) in use (package.json → npm/pnpm, pyproject.toml → uv/pip).
+2. List outdated dependencies with version info (current vs latest).
+3. Categorize updates:
+   - **Patch/minor** — safe to update automatically
+   - **Major** — list them but do NOT auto-update; report breaking change risk
+4. Update patch/minor dependencies.
+5. Run the project's test suite to verify nothing broke.
+6. If tests fail, revert the problematic update and report which dependency caused the failure.
+7. Summarize: what was updated, what major updates are available, and any issues found.

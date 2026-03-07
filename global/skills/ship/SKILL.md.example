@@ -1,0 +1,19 @@
+---
+name: ship
+description: Run pre-commit checks, commit, and push
+user-invocable: true
+allowed-tools:
+  - Bash(npm run *)
+  - Bash(pnpm run *)
+  - Bash(uv run *)
+  - Bash(git *)
+---
+
+Ship current changes to the remote:
+
+1. Run the project's standard checks (look in CLAUDE.md for the check/test/lint commands). If anything fails, fix it before proceeding.
+2. Run `git status` and `git diff --staged` to see what's changed.
+3. Stage all modified and new files that are relevant (exclude .env, credentials, large binaries).
+4. Write a concise conventional commit message summarizing the changes.
+5. Commit and push to the current branch. If the branch doesn't have an upstream yet, set one with `-u`.
+6. Report what was committed and pushed.

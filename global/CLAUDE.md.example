@@ -4,19 +4,22 @@
 
 - Planning/roadmap file goes in `docs/plan.md` — living document for phases, tasks, and status
 - Use conventional commits: `feat:`, `fix:`, `docs:`, `chore:`, `refactor:`, `test:`
+- Never commit secrets, API keys, or `.env` files
+- Ask before making architectural changes — anything that would be hard to reverse
+
+## Default infrastructure
+
+- GCP ecosystem: Firebase Hosting, Cloud Functions, Cloud Run, BigQuery, Secret Manager
+- New projects default to GCP unless stated otherwise
 
 ## Coding style
 
 - Prefer simple, readable code over clever abstractions
 - Avoid premature optimization — write clear code first
 - Use descriptive variable names; avoid single-letter names outside loops
+- Strict typing everywhere — no `any` in TypeScript, type annotations on all Python function signatures
 
 ## Communication
 
 - Be concise — lead with the answer, skip filler
 - Show file paths when referencing code
-
-## Tool preferences
-
-- Preferred editor: YOUR_EDITOR
-- Preferred terminal: YOUR_TERMINAL

@@ -1,0 +1,22 @@
+---
+name: test
+description: Run tests smartly — detect changed files and run only relevant tests
+user-invocable: true
+allowed-tools:
+  - Bash(git *)
+  - Bash(npm test *)
+  - Bash(npm run test *)
+  - Bash(pnpm test *)
+  - Bash(pnpm run test *)
+  - Bash(uv run pytest *)
+  - Read
+  - Glob
+---
+
+Run tests intelligently based on what changed:
+
+1. Run `git diff --name-only HEAD` and `git diff --name-only --staged` to find changed files.
+2. Identify which test files correspond to the changes (colocated tests, mirrored test directories, or related modules).
+3. Run only the relevant tests first. If they pass, report success.
+4. If no specific test mapping is clear, fall back to running the full test suite.
+5. Report results: passed/failed count, and show failure details if any.

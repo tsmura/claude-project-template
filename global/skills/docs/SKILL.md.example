@@ -1,0 +1,24 @@
+---
+name: docs
+description: Update documentation after code changes
+user-invocable: true
+allowed-tools:
+  - Bash(git *)
+  - Read
+  - Glob
+  - Grep
+  - Edit
+  - Write
+---
+
+Update documentation to reflect recent code changes:
+
+1. Run `git diff --name-only HEAD~1..HEAD` (or `--staged` if uncommitted) to find what changed.
+2. Check if any of the following need updates:
+   - `docs/plan.md` — mark completed tasks, add new ones
+   - `CLAUDE.md` — new commands, changed structure, new conventions
+   - `README.md` — setup instructions, feature descriptions
+   - `CHANGELOG.md` — if the project maintains one
+3. For each doc that needs updating, make the minimal edit to keep it accurate.
+4. Do NOT rewrite docs unnecessarily — only update what's stale or missing.
+5. Report what was updated and why.

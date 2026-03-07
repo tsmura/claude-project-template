@@ -1,0 +1,22 @@
+---
+name: start
+description: Session briefing — repo status, recent changes, and next steps
+user-invocable: true
+allowed-tools:
+  - Bash(git log*)
+  - Bash(git status*)
+  - Glob
+  - Read
+---
+
+Give a concise session briefing:
+
+1. Run `git log --oneline -10` and `git status` (as separate commands, not chained, no `-C` flag) to see recent commits and working tree state.
+2. Read `docs/plan.md` for current status and incomplete tasks. If it doesn't exist, infer next steps from recent commits and CLAUDE.md context.
+3. Summarize in this format:
+
+**Status:** Current branch, clean/dirty, last few commits (one-liners).
+**Current phase:** What's in progress and what it covers.
+**Next up:** 2-3 concrete next tasks, prioritized.
+
+Keep it brief — no more than ~15 lines total. End by asking what the user wants to tackle.

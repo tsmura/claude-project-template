@@ -5,6 +5,7 @@ It will be loaded for every project underneath.
 
 ## Conventions
 
-- Planning/roadmap file goes in `docs/plan.md`
-- Use conventional commits for all repos
+- Planning/roadmap file goes in `docs/plan.md` — living document for phases, tasks, and status
+- Use conventional commits: `feat:`, `fix:`, `docs:`, `chore:`, `refactor:`, `test:`
 - All projects should have a README.md with setup instructions
+- Never commit secrets, API keys, or `.env` files
