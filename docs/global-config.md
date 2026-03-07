@@ -10,7 +10,7 @@ Claude Code loads configuration from multiple scopes, merged in this order:
 |----------|-------|-------------|----------|-----|
 | Highest | Managed policy | `/Library/Application Support/ClaudeCode/CLAUDE.md` (macOS) | `managed-settings.json` | `managed-mcp.json` |
 | | Project local | `CLAUDE.local.md` | `.claude/settings.local.json` | — |
-| | Project | `CLAUDE.md`, `.claude/rules/**/*.md` | `.claude/settings.json` | `.mcp.json` |
+| | Project | `CLAUDE.md` (or `.claude/CLAUDE.md`), `.claude/rules/**/*.md` | `.claude/settings.json` | `.mcp.json` |
 | | Parent dirs | `../CLAUDE.md`, `../../CLAUDE.md`, ... | — | — |
 | | User rules | — (see User below) | — | — |
 | Lowest | User (global) | `~/.claude/CLAUDE.md`, `~/.claude/rules/**/*.md` | `~/.claude/settings.json` | `~/.claude.json` |
@@ -35,6 +35,8 @@ Example: working in `~/projects/myapp/packages/frontend/`
 
 **Parent directory CLAUDE.md** (`~/projects/CLAUDE.md`) is useful for conventions shared across all your projects — e.g., commit style, documentation standards, planning file location. See `global/parent-claude.md.example`.
 
+**Importing files:** Any CLAUDE.md can pull in additional files using `@path/to/file` syntax (e.g., `@docs/api-reference.md`). Paths are relative to the file containing the import. Imports can be nested up to 5 levels deep.
+
 ## File Reference
 
 ### `~/.claude/CLAUDE.md` — Global instructions
@@ -43,7 +45,8 @@ Personal instructions applied to every project. Keep under 200 lines.
 
 - **Use for:** cross-project preferences, coding style, workflow conventions
 - **Example:** `global/CLAUDE.md.example`
-- **Project equivalent:** `CLAUDE.md` (project root)
+- **Project equivalent:** `CLAUDE.md` (or `.claude/CLAUDE.md`)
+- **Imports:** use `@path/to/file` syntax to pull in other files (e.g., `@docs/api-reference.md`)
 
 ### `~/.claude/settings.json` — Global settings
 
@@ -78,7 +81,7 @@ Reusable slash commands available in all projects. Each skill is a directory wit
 - **Invoke:** `/skill-name` or automatically when relevant
 - **Example:** `global/skills/git-summary/SKILL.md.example`
 - **Project equivalent:** `.claude/skills/*/SKILL.md`
-- **Frontmatter options:** `name`, `description`, `allowed-tools`, `model`, `context`
+- **Frontmatter options:** `name`, `description`, `allowed-tools`, `model`, `context`, `agent`, `disable-model-invocation`, `user-invocable`, `argument-hint`, `hooks`
 
 ### `~/.claude/agents/*.md` — Personal subagents
 
@@ -87,7 +90,7 @@ Markdown files with YAML frontmatter defining specialized subagents available in
 - **Use for:** code reviewers, researchers, debuggers, domain-specific agents
 - **Example:** `global/agents/researcher.md.example`
 - **Project equivalent:** `.claude/agents/*.md`
-- **Frontmatter fields:** `name`, `description`, `tools`, `model`, `permissionMode`, `hooks`, `memory`, `skills`
+- **Frontmatter fields:** `name`, `description`, `tools`, `disallowedTools`, `model`, `permissionMode`, `maxTurns`, `hooks`, `memory`, `skills`, `mcpServers`, `background`, `isolation`
 
 ### `~/.claude.json` — User-scoped MCP servers
 

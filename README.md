@@ -8,6 +8,8 @@ PROJECT_DESCRIPTION
 2. Run `./setup.sh` to configure the project
 3. Start coding with Claude Code
 
+> **Tip:** Already have a project? Run `/init` inside Claude Code to auto-generate a `CLAUDE.md` from your codebase.
+
 ## Project Structure
 
 ```
@@ -23,7 +25,7 @@ This project uses official Claude Code configuration files:
 
 | File | Purpose | Committed? |
 |---|---|---|
-| `CLAUDE.md` | Project instructions and conventions | Yes |
+| `CLAUDE.md` (or `.claude/CLAUDE.md`) | Project instructions and conventions | Yes |
 | `CLAUDE.local.md` | Personal overrides (copy from `.example`) | No |
 | `.claude/settings.json` | Shared permissions and hooks | Yes |
 | `.claude/settings.local.json` | Personal permissions (copy from `.example`) | No |

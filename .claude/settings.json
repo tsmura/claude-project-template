@@ -16,5 +16,10 @@
       "Bash(git push --force *)",
       "Bash(git reset --hard *)"
     ]
-  }
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "autoMemoryEnabled": true
 }

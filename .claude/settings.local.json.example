@@ -5,6 +5,16 @@
       "Bash(docker *)"
     ]
   },
+  "sandbox": {
+    "enabled": true,
+    "filesystem": {
+      "allowWrite": ["//tmp/build"],
+      "denyRead": ["~/.aws/credentials"]
+    },
+    "network": {
+      "allowedDomains": ["github.com", "*.npmjs.org"]
+    }
+  },
   "hooks": {
     "PostToolUse": [
       {

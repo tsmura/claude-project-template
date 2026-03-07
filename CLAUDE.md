@@ -37,3 +37,4 @@ PKG_MANAGER run lint     # Run linter
 ## Project-Specific Notes
 
 <!-- Add architecture decisions, known gotchas, dependency notes, etc. -->
+<!-- You can import shared docs with @path/to/file syntax, e.g. @docs/api-reference.md -->
