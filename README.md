@@ -1,27 +1,46 @@
-# [PROJECT_NAME]
+# PROJECT_NAME
 
-## Overview
-[PROJECT_DESCRIPTION]
+PROJECT_DESCRIPTION
 
 ## Getting Started
-1. Clone this repo
+
+1. Clone this repository
 2. Run `./setup.sh` to configure the project
-3. Open in VS Code and connect via Claude Code
+3. Start coding with Claude Code
 
-## Claude Code Setup
-This repo uses a standardized `.claude/` structure for AI-assisted development.
-Before starting work, Claude will read:
-- `.claude/instructions.md` – project context and coding conventions
-- `.claude/agents.md` – agent roles and responsibilities
-- `.claude/handoff-protocol.md` – how agents communicate
+## Project Structure
 
-## Folder Structure
 ```
-src/        – Source code
-tests/      – Tests
-docs/       – Documentation
-.claude/    – Claude Code configuration
+src/          Source code
+tests/        Test files
+docs/         Documentation and planning
+  plan.md     Living roadmap document
 ```
 
-## Team
-See `.claude/project-metadata.json` for team details.
+## Claude Code Configuration
+
+This project uses official Claude Code configuration files:
+
+| File | Purpose | Committed? |
+|---|---|---|
+| `CLAUDE.md` | Project instructions and conventions | Yes |
+| `CLAUDE.local.md` | Personal overrides (copy from `.example`) | No |
+| `.claude/settings.json` | Shared permissions and hooks | Yes |
+| `.claude/settings.local.json` | Personal permissions (copy from `.example`) | No |
+| `.claude/rules/` | Path-specific coding rules | Yes |
+| `.claude/skills/` | Custom slash commands | Yes |
+| `.claude/agents/` | Subagent definitions | Yes |
+| `.mcp.json` | MCP server config (copy from `.example`) | No |
+
+## Development
+
+```bash
+# Build
+PKG_MANAGER run build
+
+# Test
+PKG_MANAGER run test
+
+# Lint
+PKG_MANAGER run lint
+```

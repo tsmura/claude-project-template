@@ -1,10 +1,26 @@
+# Claude Code local/personal files
+CLAUDE.local.md
+.claude/settings.local.json
+.mcp.json
+
+# Environment and secrets
 .env
 .env.*
 *.secret
+
+# Dependencies
 node_modules/
-__pycache__/
-.DS_Store
-*.log
 .venv/
+vendor/
+
+# Build artifacts
 dist/
 build/
+__pycache__/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

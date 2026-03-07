@@ -1,0 +1,15 @@
+# Personal Overrides
+
+Copy this file to `CLAUDE.local.md` and customize.
+This file is gitignored and will not be shared with the team.
+
+## My Preferences
+
+- I prefer concise explanations
+- My editor is VS Code
+- I work primarily on [area of the codebase]
+
+## Local Environment
+
+- My local database runs on port 5432
+- I use Docker for [service]
