@@ -49,6 +49,7 @@ sedi "s/PKG_MANAGER/$PKG_MANAGER_ESC/g" CLAUDE.md
 # Apply substitutions to README.md
 sedi "s/PROJECT_NAME/$PROJECT_NAME_ESC/g" README.md
 sedi "s/PROJECT_DESCRIPTION/$PROJECT_DESCRIPTION_ESC/g" README.md
+sedi "s/PKG_MANAGER/$PKG_MANAGER_ESC/g" README.md
 
 # Update docs/plan.md with project name
 sedi "s/# Project Plan/# $PROJECT_NAME_ESC — Plan/" docs/plan.md
