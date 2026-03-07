@@ -1,0 +1,14 @@
+---
+name: git-summary
+description: Summarize recent git activity in the current repo
+allowed-tools: Bash, Read
+---
+
+Provide a concise summary of recent git activity:
+
+1. Run `git log --oneline -10` to see recent commits
+2. Run `git status` to see working tree state
+3. Run `git branch -a` to list branches
+
+Summarize: current branch, clean/dirty state, last few commits, and any notable branches.
+Keep the output brief — no more than 10 lines.

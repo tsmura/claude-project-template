@@ -32,6 +32,22 @@ This project uses official Claude Code configuration files:
 | `.claude/agents/` | Subagent definitions | Yes |
 | `.mcp.json` | MCP server config (copy from `.example`) | No |
 
+## Global Configuration (Optional)
+
+Claude Code also supports user-level configuration that applies across all your projects. Run `./global-setup.sh` to optionally install these:
+
+| File | Target | Purpose |
+|---|---|---|
+| `global/CLAUDE.md.example` | `~/.claude/CLAUDE.md` | Cross-project instructions |
+| `global/settings.json.example` | `~/.claude/settings.json` | Global permissions, env vars |
+| `global/keybindings.json.example` | `~/.claude/keybindings.json` | Keyboard shortcuts |
+| `global/rules/coding-style.md.example` | `~/.claude/rules/coding-style.md` | Personal coding rules |
+| `global/skills/git-summary/SKILL.md.example` | `~/.claude/skills/git-summary/SKILL.md` | Personal skills |
+| `global/claude.json.example` | `~/.claude.json` | User-scoped MCP servers |
+| `global/parent-claude.md.example` | `~/projects/CLAUDE.md` | Shared rules for sibling projects |
+
+See [docs/global-config.md](docs/global-config.md) for the full configuration hierarchy.
+
 ## Development
 
 ```bash

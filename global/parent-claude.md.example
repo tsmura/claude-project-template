@@ -1,0 +1,10 @@
+# Shared Project Conventions
+
+Place this file at the parent of your project directories (e.g., ~/projects/CLAUDE.md).
+It will be loaded for every project underneath.
+
+## Conventions
+
+- Planning/roadmap file goes in `docs/plan.md`
+- Use conventional commits for all repos
+- All projects should have a README.md with setup instructions

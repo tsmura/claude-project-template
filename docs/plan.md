@@ -2,8 +2,10 @@
 
 ## Phases
 
-### Phase 1: Setup
-- [ ] Initialize project from template
+### Phase 1: Template Setup
+- [x] Project-level Claude Code configuration (CLAUDE.md, settings, rules, agents, skills)
+- [x] Global-level Claude Code configuration (examples + docs + setup script)
+- [ ] Initialize project from template (`./setup.sh`)
 - [ ] Configure CLAUDE.md with project specifics
 - [ ] Set up development environment
 
@@ -15,4 +17,4 @@
 
 ## Status
 
-Last updated: YYYY-MM-DD
+Last updated: 2026-03-08

@@ -1,0 +1,8 @@
+# Personal Coding Style
+
+These rules apply to all projects unless overridden by project-level rules.
+
+- Prefer early returns over deeply nested conditionals
+- Use guard clauses to handle edge cases at the top of functions
+- Keep functions under 30 lines when reasonable
+- Prefer named constants over magic numbers

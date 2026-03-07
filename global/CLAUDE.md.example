@@ -1,0 +1,22 @@
+# Global Preferences
+
+## Cross-project conventions
+
+- Planning/roadmap file goes in `docs/plan.md` — living document for phases, tasks, and status
+- Use conventional commits: `feat:`, `fix:`, `docs:`, `chore:`, `refactor:`, `test:`
+
+## Coding style
+
+- Prefer simple, readable code over clever abstractions
+- Avoid premature optimization — write clear code first
+- Use descriptive variable names; avoid single-letter names outside loops
+
+## Communication
+
+- Be concise — lead with the answer, skip filler
+- Show file paths when referencing code
+
+## Tool preferences
+
+- Preferred editor: YOUR_EDITOR
+- Preferred terminal: YOUR_TERMINAL
