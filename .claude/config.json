@@ -1,0 +1,16 @@
+{
+  "model": "claude-sonnet-4-6",
+  "organization": "Pixeldata Enterprises Oy",
+  "defaults": {
+    "max_tokens": 8192,
+    "temperature": 0.2,
+    "fast_mode": false
+  },
+  "parallel_sessions": true,
+  "sandbox": true,
+  "observability": {
+    "enabled": true,
+    "log_handoffs": true,
+    "log_tool_calls": true
+  }
+}

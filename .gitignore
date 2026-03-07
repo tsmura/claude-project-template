@@ -1,0 +1,10 @@
+.env
+.env.*
+*.secret
+node_modules/
+__pycache__/
+.DS_Store
+*.log
+.venv/
+dist/
+build/

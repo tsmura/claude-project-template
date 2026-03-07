@@ -1,0 +1,22 @@
+{
+  "fast_mode": {
+    "enabled_for": [
+      "boilerplate generation",
+      "test writing",
+      "documentation updates",
+      "minor refactors",
+      "linting fixes"
+    ],
+    "disabled_for": [
+      "architectural decisions",
+      "security-sensitive code",
+      "database schema changes",
+      "API contract changes"
+    ],
+    "always_confirm": [
+      "deleting files",
+      "modifying .env files",
+      "changing CI/CD config"
+    ]
+  }
+}

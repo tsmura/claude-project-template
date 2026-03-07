@@ -1,0 +1,14 @@
+{
+  "project_name": "PROJECT_NAME",
+  "created": "YYYY-MM-DD",
+  "owner": "OWNER_NAME",
+  "team": [
+    { "name": "MEMBER_1", "role": "lead" },
+    { "name": "MEMBER_2", "role": "contributor" },
+    { "name": "MEMBER_3", "role": "contributor" }
+  ],
+  "stack": [],
+  "repo_url": "",
+  "active_agents": ["orchestrator", "implementer", "reviewer", "tester", "documenter"],
+  "status": "active"
+}
