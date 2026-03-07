@@ -87,6 +87,11 @@ echo "Global skills:"
 install_file "$GLOBAL_DIR/skills/git-summary/SKILL.md.example" "$CLAUDE_HOME/skills/git-summary/SKILL.md"
 echo ""
 
+# Global agents
+echo "Global agents:"
+install_file "$GLOBAL_DIR/agents/researcher.md.example" "$CLAUDE_HOME/agents/researcher.md"
+echo ""
+
 # User-scoped MCP servers
 echo "User-scoped MCP servers:"
 install_file "$GLOBAL_DIR/claude.json.example" "$HOME/.claude.json"

@@ -1,7 +1,6 @@
 # Claude Code local/personal files
 CLAUDE.local.md
 .claude/settings.local.json
-.mcp.json
 
 # Environment and secrets
 .env

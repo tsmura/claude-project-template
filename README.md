@@ -29,8 +29,8 @@ This project uses official Claude Code configuration files:
 | `.claude/settings.local.json` | Personal permissions (copy from `.example`) | No |
 | `.claude/rules/` | Path-specific coding rules | Yes |
 | `.claude/skills/` | Custom slash commands | Yes |
-| `.claude/agents/` | Subagent definitions | Yes |
-| `.mcp.json` | MCP server config (copy from `.example`) | No |
+| `.claude/agents/` | Subagent definitions (flat `.md` files) | Yes |
+| `.mcp.json` | MCP server config (copy from `.example`) | Yes |
 
 ## Global Configuration (Optional)
 
@@ -44,6 +44,7 @@ Claude Code also supports user-level configuration that applies across all your 
 | `global/rules/coding-style.md.example` | `~/.claude/rules/coding-style.md` | Personal coding rules |
 | `global/skills/git-summary/SKILL.md.example` | `~/.claude/skills/git-summary/SKILL.md` | Personal skills |
 | `global/claude.json.example` | `~/.claude.json` | User-scoped MCP servers |
+| `global/agents/researcher.md.example` | `~/.claude/agents/researcher.md` | Personal subagents |
 | `global/parent-claude.md.example` | `~/projects/CLAUDE.md` | Shared rules for sibling projects |
 
 See [docs/global-config.md](docs/global-config.md) for the full configuration hierarchy.

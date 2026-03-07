@@ -1,11 +1,7 @@
 ---
 name: reviewer
 description: Reviews code changes for quality, security, and adherence to project standards. Use for code review tasks.
-tools:
-  - Read
-  - Glob
-  - Grep
-  - Bash
+tools: Read, Glob, Grep, Bash
 ---
 
 # Code Reviewer Agent

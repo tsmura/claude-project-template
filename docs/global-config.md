@@ -80,6 +80,15 @@ Reusable slash commands available in all projects. Each skill is a directory wit
 - **Project equivalent:** `.claude/skills/*/SKILL.md`
 - **Frontmatter options:** `name`, `description`, `allowed-tools`, `model`, `context`
 
+### `~/.claude/agents/*.md` — Personal subagents
+
+Markdown files with YAML frontmatter defining specialized subagents available in all projects.
+
+- **Use for:** code reviewers, researchers, debuggers, domain-specific agents
+- **Example:** `global/agents/researcher.md.example`
+- **Project equivalent:** `.claude/agents/*.md`
+- **Frontmatter fields:** `name`, `description`, `tools`, `model`, `permissionMode`, `hooks`, `memory`, `skills`
+
 ### `~/.claude.json` — User-scoped MCP servers
 
 MCP server configuration available across all projects. This file also contains auto-managed app state — only the `mcpServers` section should be manually edited.
