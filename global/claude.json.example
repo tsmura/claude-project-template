@@ -1,9 +1,20 @@
 {
   "mcpServers": {
-    "example-server": {
+    "context7": {
       "command": "npx",
-      "args": ["-y", "@example/mcp-server"],
-      "env": {}
+      "args": ["-y", "@upstash/context7-mcp"]
+    },
+    "firebase": {
+      "command": "npx",
+      "args": ["-y", "firebase-tools@latest", "mcp"]
+    },
+    "gcloud-mcp": {
+      "command": "npx",
+      "args": ["googleapis/gcloud-mcp"]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"]
     }
   }
 }
