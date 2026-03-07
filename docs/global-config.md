@@ -63,7 +63,7 @@ Customize Claude Code keyboard shortcuts. Changes auto-reload without restart.
 
 - **Use for:** rebinding submit key, adding chord shortcuts, disabling keys
 - **Example:** `global/keybindings.json.example`
-- **Schema:** `https://www.schemastore.org/claude-code-keybindings.json`
+- **Schema:** `https://json.schemastore.org/claude-code-keybindings.json`
 - **No project equivalent** — keybindings are always global
 
 ### `~/.claude/rules/**/*.md` — Global rules
