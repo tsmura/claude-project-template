@@ -32,7 +32,7 @@ This project uses official Claude Code configuration files:
 | `.claude/rules/` | Path-specific coding rules | Yes |
 | `.claude/skills/` | Custom slash commands | Yes |
 | `.claude/agents/` | Subagent definitions (flat `.md` files) | Yes |
-| `.mcp.json` | MCP server config (copy from `.example`) | Yes |
+| `.mcp.json` | MCP server config (copy from `.example`) | No |
 
 ## Global Configuration (Optional)
 

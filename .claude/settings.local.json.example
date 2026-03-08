@@ -4,28 +4,5 @@
     "allow": [
       "Bash(docker *)"
     ]
-  },
-  "sandbox": {
-    "enabled": true,
-    "filesystem": {
-      "allowWrite": ["//tmp/build"],
-      "denyRead": ["~/.aws/credentials"]
-    },
-    "network": {
-      "allowedDomains": ["github.com", "*.npmjs.org"]
-    }
-  },
-  "hooks": {
-    "PostToolUse": [
-      {
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "npm run lint --fix $TOOL_INPUT 2>/dev/null || true"
-          }
-        ]
-      }
-    ]
   }
 }
