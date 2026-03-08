@@ -8,9 +8,9 @@
       "command": "npx",
       "args": ["-y", "firebase-tools@latest", "mcp"]
     },
-    "gcloud-mcp": {
+    "gcloud": {
       "command": "npx",
-      "args": ["googleapis/gcloud-mcp"]
+      "args": ["-y", "@google-cloud/gcloud-mcp"]
     },
     "playwright": {
       "command": "npx",
