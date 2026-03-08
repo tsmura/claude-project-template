@@ -92,6 +92,21 @@ Markdown files with YAML frontmatter defining specialized subagents available in
 - **Project equivalent:** `.claude/agents/*.md`
 - **Frontmatter fields:** `name`, `description`, `tools`, `disallowedTools`, `model`, `permissionMode`, `maxTurns`, `hooks`, `memory`, `skills`, `mcpServers`, `background`, `isolation`
 
+### `~/.claude/.env` — Plugin secrets
+
+Environment variables for MCP-based plugins (e.g., Slack). Only visible to Claude Code — not exposed to your shell or other processes.
+
+- **Use for:** API tokens and secrets required by plugins
+- **No project equivalent** — secrets are always global
+- **Format:** one `KEY=value` per line, no quotes needed
+
+```bash
+# Example: Slack plugin
+SLACK_BOT_TOKEN=xoxb-your-token-here
+```
+
+After editing this file, restart Claude Code for changes to take effect.
+
 ### `~/.claude.json` — User-scoped MCP servers
 
 MCP server configuration available across all projects. This file also contains auto-managed app state — only the `mcpServers` section should be manually edited.
@@ -100,6 +115,49 @@ MCP server configuration available across all projects. This file also contains 
 - **Add via CLI:** `claude mcp add --scope user <name> <command>`
 - **Example:** `global/claude.json.example`
 - **Project equivalent:** `.mcp.json`
+
+## Plugin Scoping
+
+Plugins can be installed at different scopes to control availability and sharing:
+
+| Scope | CLI flag | Settings file | Shared? | Use for |
+|-------|----------|---------------|---------|---------|
+| **user** | default | `~/.claude/settings.json` | No | Tools you want everywhere |
+| **project** | `--scope project` | `.claude/settings.json` | Yes (committed) | Stack/team-specific tools |
+| **local** | `--scope local` | `.claude/settings.local.json` | No (gitignored) | Personal experiments |
+
+### How it works
+
+Plugins are tracked via `enabledPlugins` in the target settings file:
+
+```json
+{
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true,
+    "playwright@claude-plugins-official": true
+  }
+}
+```
+
+When a plugin exists at multiple scopes, the **higher-priority scope wins** (project overrides user). This lets teams enforce specific plugin versions while developers keep personal plugins.
+
+### Choosing the right scope
+
+- **Global (user):** workflow tools that apply regardless of language — commit helpers, code review, PR toolkit, GitHub integration
+- **Project:** stack-specific tools — language servers, test frameworks, cloud services, security scanners. These ensure every team member has the same tooling
+- **Local:** plugins you're trying out, or personal tools that don't belong in the repo
+
+### Managing plugins
+
+```bash
+claude plugin install <name>                  # install (user scope)
+claude plugin install <name> --scope project  # install (project scope)
+claude plugin uninstall <name> --scope project
+claude plugin enable <name> --scope project
+claude plugin disable <name> --scope project
+```
+
+See [recommended-plugins.md](recommended-plugins.md) for the full list with recommended scopes.
 
 ## Auto-Managed: Memory
 

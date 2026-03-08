@@ -1,45 +1,66 @@
 # Recommended Claude Code Plugins
 
-Install plugins with `claude plugin install <name>`. Plugins are user-global — they apply across all projects.
+Plugins can be installed at three scopes. Choose the right scope for each plugin:
 
-Run `./global-setup.sh` to install interactively, or install individually below.
+| Scope | Flag | Settings file | Shared with team? | Use for |
+|-------|------|---------------|-------------------|---------|
+| **user** (global) | default | `~/.claude/settings.json` | No | Tools you want in every project |
+| **project** | `--scope project` | `.claude/settings.json` | Yes (committed) | Stack-specific or team-shared tools |
+| **local** | `--scope local` | `.claude/settings.local.json` | No (gitignored) | Personal experiments for one project |
 
-## Integrations
+```bash
+# Examples
+claude plugin install commit-commands                  # global (default)
+claude plugin install playwright --scope project       # project (committed)
+claude plugin install ralph-loop --scope local         # local (gitignored)
+```
+
+Run `./global-setup.sh` to install global plugins interactively. For project plugins, use `./setup.sh` or install manually.
+
+---
+
+## Global Plugins (user scope)
+
+Tools useful across all projects regardless of tech stack. Installed by `./global-setup.sh`.
 
 | Plugin | Description |
 |--------|-------------|
-| `firebase` | Manage Firestore, auth, cloud functions, hosting, storage |
-| `playwright` | Browser automation and e2e testing |
-| `github` | PR/issue management, code search, repository operations |
-| `slack` | Search messages, access channels, read threads |
-| `figma` | Access design files, extract components, translate designs to code |
+| `commit-commands` | Git commit, push, and PR workflows |
+| `code-review` | Automated PR review with confidence scoring |
+| `code-simplifier` | Simplify and refine code for clarity |
+| `pr-review-toolkit` | Specialized review agents for tests, types, quality |
+| `claude-code-setup` | Analyze codebases and recommend automations |
+| `claude-md-management` | Audit and maintain CLAUDE.md files |
+| `skill-creator` | Create, improve, and benchmark skills |
+| `plugin-dev` | Toolkit for developing Claude Code plugins |
+| `context7` | Up-to-date documentation lookup for any library |
 
-## Language Servers
+## Project Plugins (project scope)
+
+Install per-project based on your stack. These land in `.claude/settings.json` and are shared with your team. The `./setup.sh` script offers relevant plugins based on your chosen tech stack.
+
+### Frontend / TypeScript
 
 | Plugin | Description |
 |--------|-------------|
 | `typescript-lsp` | TypeScript/JavaScript code intelligence |
-| `pyright-lsp` | Python type checking and code intelligence |
+| `playwright` | Browser automation and e2e testing |
+| `frontend-design` | Production-grade frontend interfaces |
+| `figma` | Access design files, extract components, translate designs to code |
 
-## Development Tools
+### Backend / Python
 
 | Plugin | Description |
 |--------|-------------|
-| `agent-sdk-dev` | Development kit for Claude Agent SDK |
-| `pr-review-toolkit` | Specialized review agents for tests, types, quality |
-| `commit-commands` | Git commit, push, and PR workflows |
-| `code-review` | Automated PR review with confidence scoring |
-| `code-simplifier` | Simplify and refine code for clarity |
-| `feature-dev` | Codebase exploration, architecture design, quality review |
-| `frontend-design` | Production-grade frontend interfaces |
-| `playground` | Interactive single-file HTML explorers |
-| `ralph-loop` | Iterative self-referential development loops |
-| `plugin-dev` | Toolkit for developing Claude Code plugins |
-| `claude-code-setup` | Analyze codebases and recommend automations |
-| `claude-md-management` | Audit and maintain CLAUDE.md files |
-| `skill-creator` | Create, improve, and benchmark skills |
+| `pyright-lsp` | Python type checking and code intelligence |
 
-## Security
+### GCP / Firebase
+
+| Plugin | Description |
+|--------|-------------|
+| `firebase` | Manage Firestore, auth, cloud functions, hosting, storage |
+
+### Security
 
 | Plugin | Description |
 |--------|-------------|
@@ -47,46 +68,89 @@ Run `./global-setup.sh` to install interactively, or install individually below.
 | `semgrep` | Static analysis for vulnerabilities |
 | `sonatype-guide` | Dependency security and vulnerability scanning |
 
-## AI/ML
+### Development workflow
 
 | Plugin | Description |
 |--------|-------------|
-| `huggingface-skills` | Build, train, evaluate open source AI models |
+| `feature-dev` | Codebase exploration, architecture design, quality review |
+| `agent-sdk-dev` | Development kit for Claude Agent SDK |
 
-## Quick Install All
+## Personal Plugins (local scope)
+
+Optional plugins for individual use. Not committed to git.
+
+| Plugin | Description |
+|--------|-------------|
+| `playground` | Interactive single-file HTML explorers |
+| `ralph-loop` | Iterative self-referential development loops |
+| `huggingface-skills` | Build, train, evaluate open source AI models |
+| `slack` | Search messages, access channels, read threads |
+
+---
+
+## Plugin Authentication
+
+Some plugins require API tokens. Store them in `~/.claude/.env` (see [global-config.md](global-config.md#claudeenv--plugin-secrets) for details).
+
+| Plugin | Required env var | Where to get the token |
+|--------|-----------------|----------------------|
+| `slack` | `SLACK_BOT_TOKEN` | Slack API → Your Apps → OAuth & Permissions |
+
+Example `~/.claude/.env`:
+```bash
+SLACK_BOT_TOKEN=xoxb-your_token_here
+```
+
+Restart Claude Code after editing this file.
+
+---
+
+## Quick Install Reference
+
+### Global plugins (run once)
 
 ```bash
-# Integrations
-claude plugin install firebase
-claude plugin install playwright
-claude plugin install github
-claude plugin install slack
-claude plugin install figma
-
-# Language servers
-claude plugin install typescript-lsp
-claude plugin install pyright-lsp
-
-# Development tools
-claude plugin install agent-sdk-dev
-claude plugin install pr-review-toolkit
 claude plugin install commit-commands
 claude plugin install code-review
 claude plugin install code-simplifier
-claude plugin install feature-dev
-claude plugin install frontend-design
-claude plugin install playground
-claude plugin install ralph-loop
-claude plugin install plugin-dev
+claude plugin install pr-review-toolkit
 claude plugin install claude-code-setup
 claude plugin install claude-md-management
 claude plugin install skill-creator
+claude plugin install plugin-dev
+claude plugin install context7
+```
+
+### Project plugins (run per-project, or use setup.sh)
+
+```bash
+# Frontend / TypeScript
+claude plugin install typescript-lsp --scope project
+claude plugin install playwright --scope project
+claude plugin install frontend-design --scope project
+claude plugin install figma --scope project
+
+# Backend / Python
+claude plugin install pyright-lsp --scope project
+
+# GCP / Firebase
+claude plugin install firebase --scope project
 
 # Security
-claude plugin install security-guidance
-claude plugin install semgrep
-claude plugin install sonatype-guide
+claude plugin install security-guidance --scope project
+claude plugin install semgrep --scope project
+claude plugin install sonatype-guide --scope project
 
-# AI/ML
-claude plugin install huggingface-skills
+# Development workflow
+claude plugin install feature-dev --scope project
+claude plugin install agent-sdk-dev --scope project
+```
+
+### Personal plugins (optional)
+
+```bash
+claude plugin install playground --scope local
+claude plugin install ralph-loop --scope local
+claude plugin install huggingface-skills --scope local
+claude plugin install slack --scope local
 ```

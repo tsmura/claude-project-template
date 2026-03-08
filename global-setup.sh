@@ -51,7 +51,7 @@ install_file() {
     return
   fi
 
-  read -rp "  Install $display_target? [y/N] " answer
+  { read -rp "  Install $display_target? [y/N] " answer </dev/tty; } 2>/dev/null || answer="n"
   if [[ "$answer" != "y" && "$answer" != "Y" ]]; then
     echo "  SKIP  $display_target (declined)"
     SKIPPED=$((SKIPPED + 1))
@@ -101,34 +101,36 @@ echo "Global agents:"
 install_file "$GLOBAL_DIR/agents/researcher.md.example" "$CLAUDE_HOME/agents/researcher.md"
 echo ""
 
-# Recommended plugins
-PLUGINS=(
-  # Integrations
-  firebase playwright github slack figma
-  # Language servers
-  typescript-lsp pyright-lsp
-  # Development tools
-  agent-sdk-dev pr-review-toolkit commit-commands code-review code-simplifier
-  feature-dev frontend-design playground ralph-loop plugin-dev
-  claude-code-setup claude-md-management skill-creator
-  # Security
-  security-guidance semgrep sonatype-guide
-  # AI/ML
-  huggingface-skills
+# Global plugins — tools useful across all projects regardless of stack.
+# Project-specific plugins (LSPs, firebase, playwright, etc.) should be
+# installed per-project with --scope project. See docs/recommended-plugins.md.
+GLOBAL_PLUGINS=(
+  commit-commands
+  code-review
+  code-simplifier
+  pr-review-toolkit
+  claude-code-setup
+  claude-md-management
+  skill-creator
+  plugin-dev
+  context7
 )
-echo "Recommended plugins:"
+echo "Global plugins (user scope):"
+echo "  (Stack-specific plugins are installed per-project via setup.sh)"
+echo ""
 if command -v claude &>/dev/null; then
-  for plugin in "${PLUGINS[@]}"; do
-    read -rp "  Install plugin '$plugin'? [y/N] " answer
+  for plugin in "${GLOBAL_PLUGINS[@]}"; do
+    if $DRY_RUN; then
+      echo "  WOULD install plugin: $plugin"
+      INSTALLED=$((INSTALLED + 1))
+      continue
+    fi
+    { read -rp "  Install plugin '$plugin'? [y/N] " answer </dev/tty; } 2>/dev/null || answer="n"
     if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
-      if $DRY_RUN; then
-        echo "  WOULD install plugin: $plugin"
+      if claude plugin install "$plugin" --yes 2>&1 | tail -1; then
+        echo "  OK    $plugin"
       else
-        if yes | claude plugin install "$plugin" 2>&1 | tail -1; then
-          echo "  OK    $plugin"
-        else
-          echo "  FAIL  $plugin"
-        fi
+        echo "  FAIL  $plugin"
       fi
       INSTALLED=$((INSTALLED + 1))
     else
@@ -148,9 +150,14 @@ echo ""
 
 # Parent directory CLAUDE.md
 PROJECTS_DIR="$(dirname "$SCRIPT_DIR")"
+if [[ "$PROJECTS_DIR" != "$HOME"* ]]; then
+  echo "  SKIP  Parent CLAUDE.md (install path $PROJECTS_DIR is outside \$HOME)"
+  echo ""
+else
 echo "Parent directory instructions ($(echo "${PROJECTS_DIR/#$HOME/~}")/CLAUDE.md):"
 install_file "$GLOBAL_DIR/parent-claude.md.example" "$PROJECTS_DIR/CLAUDE.md"
 echo ""
+fi
 
 # Summary
 echo "======================================="
