@@ -66,8 +66,8 @@ sedi "s/# Project Plan/# $PROJECT_NAME_ESC — Plan/" docs/plan.md
 # Update .claude/settings.json permissions for the chosen package manager
 PKG="${PKG_MANAGER:-npm}"
 if [[ "$PKG" != "npm" ]]; then
-  # Replace npm run with the chosen package manager's run command
-  sedi "s|Bash(npm run \*)|Bash($PKG_MANAGER_ESC run *)|" .claude/settings.json
+  # Replace npm run with the chosen package manager's run command (permissions + hooks)
+  sedi "s|npm run|$PKG_MANAGER_ESC run|g" .claude/settings.json
 
   # Replace npx with the appropriate exec command
   case "$PKG" in
