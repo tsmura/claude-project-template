@@ -15,8 +15,8 @@
 ```
 src/          Source code
 tests/        Test files
-docs/         Documentation and planning
-  plan.md     Living roadmap document
+docs/         Documentation
+TODO.md       Living roadmap document (project root)
 ```
 
 ## Claude Code Configuration

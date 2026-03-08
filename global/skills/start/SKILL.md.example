@@ -12,7 +12,7 @@ allowed-tools:
 Give a concise session briefing:
 
 1. Run `git log --oneline -10` and `git status` (as separate commands, not chained, no `-C` flag) to see recent commits and working tree state.
-2. Read `docs/plan.md` for current status and incomplete tasks. If it doesn't exist, infer next steps from recent commits and CLAUDE.md context.
+2. Read `TODO.md` for current status and incomplete tasks. If it doesn't exist, infer next steps from recent commits and CLAUDE.md context.
 3. Summarize in this format:
 
 **Status:** Current branch, clean/dirty, last few commits (one-liners).

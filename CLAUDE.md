@@ -32,7 +32,7 @@ PKG_MANAGER run lint     # Run linter
 2. All new features require tests
 3. Run the linter before completing any task
 4. Ask before making architectural changes
-5. Update `docs/plan.md` when completing phases or tasks
+5. Update `TODO.md` when completing phases or tasks
 
 ## Project-Specific Notes
 

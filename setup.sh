@@ -60,8 +60,8 @@ sedi "s/PROJECT_NAME/$PROJECT_NAME_ESC/g" README.md
 sedi "s/PROJECT_DESCRIPTION/$PROJECT_DESCRIPTION_ESC/g" README.md
 sedi "s/PKG_MANAGER/$PKG_MANAGER_ESC/g" README.md
 
-# Update docs/plan.md with project name
-sedi "s/# Project Plan/# $PROJECT_NAME_ESC — Plan/" docs/plan.md
+# Update TODO.md with project name
+sedi "s/# Project Plan/# $PROJECT_NAME_ESC — Plan/" TODO.md
 
 # Update .claude/settings.json permissions for the chosen package manager
 PKG="${PKG_MANAGER:-npm}"
@@ -152,7 +152,7 @@ echo "Next steps:"
 echo "  1. Review and customize CLAUDE.md for your project"
 echo "  2. Review .claude/settings.json and adjust permissions"
 echo "  3. Review .claude/rules/, .claude/agents/, .claude/skills/ and customize"
-echo "  4. Update docs/plan.md with your project phases and tasks"
+echo "  4. Update TODO.md with your project phases and tasks"
 echo "  5. Copy CLAUDE.local.md.example -> CLAUDE.local.md for personal settings"
 echo "  6. Copy .mcp.json.example -> .mcp.json if you use MCP servers"
 echo "  7. (Optional) Run ./global-setup.sh to set up global Claude Code config"
