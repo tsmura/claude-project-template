@@ -86,20 +86,51 @@ echo ""
 echo "Global skills:"
 install_file "$GLOBAL_DIR/skills/start/SKILL.md.example" "$CLAUDE_HOME/skills/start/SKILL.md"
 install_file "$GLOBAL_DIR/skills/ship/SKILL.md.example" "$CLAUDE_HOME/skills/ship/SKILL.md"
-install_file "$GLOBAL_DIR/skills/pr/SKILL.md.example" "$CLAUDE_HOME/skills/pr/SKILL.md"
 install_file "$GLOBAL_DIR/skills/test/SKILL.md.example" "$CLAUDE_HOME/skills/test/SKILL.md"
 install_file "$GLOBAL_DIR/skills/docs/SKILL.md.example" "$CLAUDE_HOME/skills/docs/SKILL.md"
 install_file "$GLOBAL_DIR/skills/deps/SKILL.md.example" "$CLAUDE_HOME/skills/deps/SKILL.md"
 install_file "$GLOBAL_DIR/skills/perf/SKILL.md.example" "$CLAUDE_HOME/skills/perf/SKILL.md"
-install_file "$GLOBAL_DIR/skills/playwright-cli/SKILL.md.example" "$CLAUDE_HOME/skills/playwright-cli/SKILL.md"
-for ref in request-mocking running-code session-management storage-state test-generation tracing video-recording; do
-  install_file "$GLOBAL_DIR/skills/playwright-cli/references/$ref.md.example" "$CLAUDE_HOME/skills/playwright-cli/references/$ref.md"
-done
 echo ""
 
 # Global agents
 echo "Global agents:"
 install_file "$GLOBAL_DIR/agents/researcher.md.example" "$CLAUDE_HOME/agents/researcher.md"
+echo ""
+
+# Recommended plugins
+PLUGINS=(
+  # Integrations
+  firebase playwright github slack figma
+  # Language servers
+  typescript-lsp pyright-lsp
+  # Development tools
+  agent-sdk-dev pr-review-toolkit commit-commands code-review code-simplifier
+  feature-dev frontend-design playground ralph-loop plugin-dev
+  claude-code-setup claude-md-management skill-creator
+  # Security
+  security-guidance semgrep sonatype-guide
+  # AI/ML
+  huggingface-skills
+)
+echo "Recommended plugins:"
+if command -v claude &>/dev/null; then
+  for plugin in "${PLUGINS[@]}"; do
+    read -rp "  Install plugin '$plugin'? [y/N] " answer
+    if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
+      if $DRY_RUN; then
+        echo "  WOULD install plugin: $plugin"
+      else
+        yes | claude plugin install "$plugin" 2>/dev/null && echo "  OK    $plugin" || echo "  FAIL  $plugin"
+      fi
+      INSTALLED=$((INSTALLED + 1))
+    else
+      echo "  SKIP  $plugin (declined)"
+      SKIPPED=$((SKIPPED + 1))
+    fi
+  done
+else
+  echo "  SKIP  (claude CLI not found — install plugins manually)"
+fi
 echo ""
 
 # User-scoped MCP servers
