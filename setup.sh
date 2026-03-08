@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+cd "$(dirname "$0")"
+
 echo "Claude Code Project Template Setup"
 echo "==================================="
 echo ""
@@ -16,7 +18,7 @@ sedi() {
 
 # Escape special characters for sed replacement
 escape_sed() {
-  printf '%s' "$1" | sed 's/[&/\]/\\&/g'
+  printf '%s' "$1" | sed 's/[&/\\]/\\&/g'
 }
 
 # Collect input

@@ -44,7 +44,7 @@ Claude Code also supports user-level configuration that applies across all your 
 | `global/settings.json.example` | `~/.claude/settings.json` | Global permissions |
 | `global/keybindings.json.example` | `~/.claude/keybindings.json` | Keyboard shortcuts |
 | `global/rules/coding-style.md.example` | `~/.claude/rules/coding-style.md` | Personal coding rules |
-| `global/skills/*/SKILL.md.example` | `~/.claude/skills/*/SKILL.md` | Global skills (start, ship, pr, test, docs, deps, perf, playwright-cli) |
+| `global/skills/*/SKILL.md.example` | `~/.claude/skills/*/SKILL.md` | Global skills (start, ship, test, docs, deps, perf) |
 | `global/claude.json.example` | `~/.claude.json` | User-scoped MCP servers |
 | `global/agents/researcher.md.example` | `~/.claude/agents/researcher.md` | Personal subagents |
 | `global/parent-claude.md.example` | `~/projects/CLAUDE.md` | Shared rules for sibling projects |

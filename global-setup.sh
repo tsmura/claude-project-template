@@ -45,6 +45,12 @@ install_file() {
     return
   fi
 
+  if $DRY_RUN; then
+    echo "  WOULD install $display_target"
+    INSTALLED=$((INSTALLED + 1))
+    return
+  fi
+
   read -rp "  Install $display_target? [y/N] " answer
   if [[ "$answer" != "y" && "$answer" != "Y" ]]; then
     echo "  SKIP  $display_target (declined)"
@@ -52,13 +58,11 @@ install_file() {
     return
   fi
 
-  if $DRY_RUN; then
-    echo "  WOULD install $display_target"
-  else
+  {
     mkdir -p "$(dirname "$target")"
     cp "$source" "$target"
     echo "  OK    $display_target"
-  fi
+  }
   INSTALLED=$((INSTALLED + 1))
 }
 
@@ -120,7 +124,11 @@ if command -v claude &>/dev/null; then
       if $DRY_RUN; then
         echo "  WOULD install plugin: $plugin"
       else
-        yes | claude plugin install "$plugin" 2>/dev/null && echo "  OK    $plugin" || echo "  FAIL  $plugin"
+        if yes | claude plugin install "$plugin" 2>&1 | tail -1; then
+          echo "  OK    $plugin"
+        else
+          echo "  FAIL  $plugin"
+        fi
       fi
       INSTALLED=$((INSTALLED + 1))
     else
