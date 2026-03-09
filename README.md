@@ -27,8 +27,8 @@ This project uses official Claude Code configuration files:
 |---|---|---|
 | `CLAUDE.md` (or `.claude/CLAUDE.md`) | Project instructions and conventions | Yes |
 | `CLAUDE.local.md` | Personal overrides (copy from `.example`) | No |
-| `.claude/settings.json` | Shared permissions and hooks | Yes |
-| `.claude/settings.local.json` | Personal permissions (copy from `.example`) | No |
+| `.claude/settings.json` | Shared sandbox, permissions, and hooks | Yes |
+| `.claude/settings.local.json` | Personal sandbox and permission overrides (copy from `.example`) | No |
 | `.claude/rules/` | Path-specific coding rules | Yes |
 | `.claude/skills/` | Custom slash commands | Yes |
 | `.claude/agents/` | Subagent definitions (flat `.md` files) | Yes |
