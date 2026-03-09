@@ -78,6 +78,36 @@ if [[ "$PKG" != "npm" ]]; then
   esac
 fi
 
+# Adjust sandbox write paths and local example for the chosen package manager
+NL=$'\n'
+case "$PKG" in
+  pnpm)
+    sedi "s|\"./node_modules\"|\"./node_modules\",${NL}        \".pnpm-store\"|" .claude/settings.json
+    sedi "s|~/.npm|~/.pnpm-store|" .claude/settings.local.json.example
+    ;;
+  yarn)
+    sedi "s|~/.npm|~/.yarn|" .claude/settings.local.json.example
+    ;;
+  bun)
+    sedi "s|\"./node_modules\"|\"./node_modules\",${NL}        \".bun\"|" .claude/settings.json
+    sedi "s|~/.npm|~/.bun|" .claude/settings.local.json.example
+    ;;
+  uv|pip|poetry)
+    sedi "s|./node_modules|./.venv|" .claude/settings.json
+    sedi "|./.next|d" .claude/settings.json
+    sedi "s|~/.npm|~/.cache/uv|" .claude/settings.local.json.example
+    sedi "/~/.pnpm-store/d" .claude/settings.local.json.example
+    sedi "/~/.bun/d" .claude/settings.local.json.example
+    ;;
+  cargo)
+    sedi "s|./node_modules|./target|" .claude/settings.json
+    sedi "|./.next|d" .claude/settings.json
+    sedi "s|~/.npm|~/.cargo|" .claude/settings.local.json.example
+    sedi "/~/.pnpm-store/d" .claude/settings.local.json.example
+    sedi "/~/.bun/d" .claude/settings.local.json.example
+    ;;
+esac
+
 # Offer project-scoped plugins based on tech stack
 install_project_plugin() {
   local plugin="$1"
