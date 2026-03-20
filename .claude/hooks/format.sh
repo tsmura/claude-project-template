@@ -1,6 +1,9 @@
 #!/bin/bash
 # Post-edit hook: auto-format changed file with Prettier
 # Receives JSON on stdin with tool_input.file_path
+# Requires node and prettier — skips silently if not available
+
+command -v node >/dev/null 2>&1 || exit 0
 
 FILE_PATH=$(cat | node -e "
   let d='';
@@ -20,7 +23,7 @@ fi
 
 case "$FILE_PATH" in
   *.ts|*.tsx|*.js|*.jsx|*.json|*.css|*.md)
-    npx prettier --write "$FILE_PATH" 2>/dev/null
+    npx prettier --write "$FILE_PATH" 2>&1 || true
     ;;
 esac
 
