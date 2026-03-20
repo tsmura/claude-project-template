@@ -72,5 +72,9 @@
     "pyright-lsp@claude-plugins-official": true,
     "firebase@claude-plugins-official": true
   },
+  "attribution": {
+    "model": true,
+    "provider": true
+  },
   "effortLevel": "high"
 }

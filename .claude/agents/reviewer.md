@@ -5,6 +5,7 @@ tools: Read, Glob, Grep, Bash
 disallowedTools: Write, Edit, Agent
 model: sonnet
 maxTurns: 20
+memory: project
 ---
 
 # Code Reviewer Agent

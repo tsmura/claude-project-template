@@ -34,7 +34,12 @@ PKG_MANAGER run lint     # Run linter
 4. Ask before making architectural changes
 5. Update `TODO.md` when completing phases or tasks
 
+## References
+
+<!-- Import shared docs instead of duplicating content -->
+<!-- @docs/api-reference.md -->
+<!-- @docs/architecture.md -->
+
 ## Project-Specific Notes
 
 <!-- Add architecture decisions, known gotchas, dependency notes, etc. -->
-<!-- You can import shared docs with @path/to/file syntax, e.g. @docs/api-reference.md -->

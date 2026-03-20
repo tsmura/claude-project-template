@@ -1,5 +1,8 @@
 ---
+name: create-component
 description: Create a new component with test file. Use when the user asks to scaffold or create a new component.
+disable-model-invocation: true
+context: fork
 ---
 
 # Create Component
