@@ -6,16 +6,17 @@ Claude Code supports configuration at multiple scopes. This document covers ever
 
 Claude Code loads configuration from multiple scopes, merged in this order:
 
-| Priority | Scope | Instructions | Settings | MCP |
-|----------|-------|-------------|----------|-----|
-| Highest | Managed policy | `/Library/Application Support/ClaudeCode/CLAUDE.md` (macOS) | `managed-settings.json` | `managed-mcp.json` |
-| | Project local | `CLAUDE.local.md` | `.claude/settings.local.json` | — |
-| | Project | `CLAUDE.md` (or `.claude/CLAUDE.md`), `.claude/rules/**/*.md` | `.claude/settings.json` | `.mcp.json` |
-| | Parent dirs | `../CLAUDE.md`, `../../CLAUDE.md`, ... | — | — |
-| | User rules | — (see User below) | — | — |
-| Lowest | User (global) | `~/.claude/CLAUDE.md`, `~/.claude/rules/**/*.md` | `~/.claude/settings.json` | `~/.claude.json` |
+| Priority | Scope          | Instructions                                                  | Settings                      | MCP                |
+| -------- | -------------- | ------------------------------------------------------------- | ----------------------------- | ------------------ |
+| Highest  | Managed policy | `/Library/Application Support/ClaudeCode/CLAUDE.md` (macOS)   | `managed-settings.json`       | `managed-mcp.json` |
+|          | Project local  | `CLAUDE.local.md`                                             | `.claude/settings.local.json` | —                  |
+|          | Project        | `CLAUDE.md` (or `.claude/CLAUDE.md`), `.claude/rules/**/*.md` | `.claude/settings.json`       | `.mcp.json`        |
+|          | Parent dirs    | `../CLAUDE.md`, `../../CLAUDE.md`, ...                        | —                             | —                  |
+|          | User rules     | — (see User below)                                            | —                             | —                  |
+| Lowest   | User (global)  | `~/.claude/CLAUDE.md`, `~/.claude/rules/**/*.md`              | `~/.claude/settings.json`     | `~/.claude.json`   |
 
 **How merging works:**
+
 - For `CLAUDE.md`: all matching files are loaded and concatenated (project-level appears more prominently in context)
 - For `settings.json`: array fields like `permissions.allow` are merged across scopes; managed policy cannot be overridden
 - For MCP servers: each scope's servers are available independently
@@ -25,6 +26,7 @@ Claude Code loads configuration from multiple scopes, merged in this order:
 Claude walks **up** the directory tree from your working directory, loading `CLAUDE.md` and `CLAUDE.local.md` at each level.
 
 Example: working in `~/projects/myapp/packages/frontend/`
+
 ```
 ~/.claude/CLAUDE.md                          # Global — always loaded
 ~/projects/CLAUDE.md                         # Parent — loaded (shared across projects)
@@ -71,7 +73,7 @@ Customize Claude Code keyboard shortcuts. Changes auto-reload without restart.
 Markdown files discovered recursively. Applied to all projects, before project rules.
 
 - **Use for:** personal coding standards that aren't project-specific
-- **Example:** `global/rules/coding-style.md.example`
+- **Examples:** `global/rules/coding-style.md.example`, `docs.md.example`, `testing.md.example`, `git.md.example`
 - **Project equivalent:** `.claude/rules/**/*.md`
 
 ### `~/.claude/skills/*/SKILL.md` — Personal skills
@@ -120,11 +122,11 @@ MCP server configuration available across all projects. This file also contains 
 
 Plugins can be installed at different scopes to control availability and sharing:
 
-| Scope | CLI flag | Settings file | Shared? | Use for |
-|-------|----------|---------------|---------|---------|
-| **user** | default | `~/.claude/settings.json` | No | Tools you want everywhere |
-| **project** | `--scope project` | `.claude/settings.json` | Yes (committed) | Stack/team-specific tools |
-| **local** | `--scope local` | `.claude/settings.local.json` | No (gitignored) | Personal experiments |
+| Scope       | CLI flag          | Settings file                 | Shared?         | Use for                   |
+| ----------- | ----------------- | ----------------------------- | --------------- | ------------------------- |
+| **user**    | default           | `~/.claude/settings.json`     | No              | Tools you want everywhere |
+| **project** | `--scope project` | `.claude/settings.json`       | Yes (committed) | Stack/team-specific tools |
+| **local**   | `--scope local`   | `.claude/settings.local.json` | No (gitignored) | Personal experiments      |
 
 ### How it works
 
@@ -180,11 +182,11 @@ Claude Code automatically maintains memory files per project:
 
 For managed environments, IT can deploy system-wide configuration:
 
-| OS | Path |
-|----|------|
-| macOS | `/Library/Application Support/ClaudeCode/` |
-| Linux/WSL | `/etc/claude-code/` |
-| Windows | `C:\Program Files\ClaudeCode\` |
+| OS        | Path                                       |
+| --------- | ------------------------------------------ |
+| macOS     | `/Library/Application Support/ClaudeCode/` |
+| Linux/WSL | `/etc/claude-code/`                        |
+| Windows   | `C:\Program Files\ClaudeCode\`             |
 
 Files: `CLAUDE.md`, `managed-settings.json`, `managed-mcp.json`
 

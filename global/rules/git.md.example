@@ -1,0 +1,5 @@
+# Git Rules
+
+- Never run `git add`, `git commit`, `git push`, or `/ship` without explicit user approval
+- Never invoke `/ship` or `/commit` skills unprompted
+- "Fix all", "apply changes", or similar instructions do NOT imply committing or pushing
