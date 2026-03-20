@@ -6,11 +6,13 @@
 - Use conventional commits: `feat:`, `fix:`, `docs:`, `chore:`, `refactor:`, `test:`
 - Never commit secrets, API keys, or `.env` files
 - Ask before making architectural changes — anything that would be hard to reverse
+- Never git add/commit/push without explicit user approval — always wait for the go-ahead
 
 ## Default infrastructure
 
 - GCP ecosystem: Firebase Hosting, Cloud Functions, Cloud Run, BigQuery, Secret Manager
 - New projects default to GCP unless stated otherwise
+- **GCP deploy safety:** Always pass `--project=<project-id>` explicitly on every `gcloud` and `firebase` deploy command. Never rely on the active gcloud config. Verify with `gcloud config get-value project` before deploying and confirm the target project with the user.
 
 ## Coding style
 

@@ -1,0 +1,6 @@
+# Documentation Rules
+
+- Use clear, concise language
+- Include code examples for any API or function reference
+- Keep README.md focused on getting started; put details in docs/
+- Update TODO.md at the project root when completing milestones
